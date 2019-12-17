@@ -1,21 +1,72 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-    />
-    <title>OpenCV.js Face Detection (WebAssembly)</title>
-  </head>
+    <meta charset="utf-8" />
+    <title>AR Sudoku Solver</title>
+    <script src="./lib/opencv.js" type="text/javascript"></script>
+    <!-- Import @tensorflow/tfjs or @tensorflow/tfjs-core -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm"></script>
 
+    <style type="text/css">
+      html,
+      body,
+      .wrapper {
+        height: 100%;
+        margin: 0;
+      }
+
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        align-content: stretch;
+      }
+
+      .video {
+        flex: 1;
+        position: relative;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .controls {
+        height: 50px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      canvas {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      .controls input {
+        width: 85%;
+        align-self: center;
+      }
+    </style>
+  </head>
   <body>
-      <script async src="./lib/opencv.js"></script>
-    <script async="" src="./lib/analytics.js"></script>
-    <script src="./lib/adapter-latest.js"></script>
-    <script src="./lib/stats.min.js"></script>
-    <script src="./lib/dat.gui.min.js"></script>
-    <script src="./lib/utils.js"></script>
-    <script src="./lib/index.js"></script>
+    <div class="wrapper">
+      <div class="video">
+        <canvas id="videoTargetCanvas" style="display: none;"></canvas>
+        <canvas id="tempCanvas" style="display: none;"></canvas>
+      </div>
+      <div class="controls">
+        <input type="range" id="range" min="0" max="6" value="6" />
+      </div>
+    </div>
+    <video id="videoElement" height="0" autoplay="" playsinline=""></video>
+
+    <script type="module">
+      import "./lib/index.js";
+    </script>
   </body>
 </html>
