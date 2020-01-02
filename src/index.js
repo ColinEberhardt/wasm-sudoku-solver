@@ -1,6 +1,3 @@
-// taken from here:
-// https://huningxin.github.io/opencv.js/samples/face-detection/index-wasm.html
-
 import rescale from "./steps/rescale.js";
 import threshold from "./steps/threshold.js";
 import findSudokuGrid from "./steps/findSudokuGrid.js";
@@ -90,7 +87,7 @@ const run = async (captureFromVideo = true) => {
     renderStep(3, showStep, projectedBuffer);
 
     const puzzle = matchDigits(projectedBuffer);
-    console.log(puzzle);
+    // console.log(puzzle);
 
     let solution = solver(puzzle);
     if (solution.length === 0) return;

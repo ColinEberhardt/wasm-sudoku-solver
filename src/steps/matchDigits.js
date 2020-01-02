@@ -6,7 +6,7 @@ const IMAGE_WIDTH = 180;
 let model;
 
 const init = async () => {
-  // await tf.setBackend("wasm");
+  await tf.setBackend("wasm");
   model = await tf.loadLayersModel("./training/my-model-3.json");
 };
 
