@@ -1,4 +1,4 @@
-import { indexOfMaxValue, imgWrite } from "./utils.js";
+import { indexOfMaxValue } from "./utils.js";
 
 const TOTAL_CELLS = 9 * 9;
 const IMAGE_WIDTH = 180;
@@ -6,7 +6,7 @@ const IMAGE_WIDTH = 180;
 let model;
 
 const init = async () => {
-  await tf.setBackend("wasm");
+  // await tf.setBackend("wasm");
   model = await tf.loadLayersModel("./training/my-model-3.json");
 };
 

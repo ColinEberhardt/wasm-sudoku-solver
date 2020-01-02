@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <title>AR Sudoku Solver</title>
-    <script src="./lib/opencv.js" type="text/javascript"></script>
+    <script src="./lib/opencv.js"></script>
     <script src="./lib/tfjs.js"></script>
-    <script src="./lib/tfjs-backend-wasm.wasm"></script>
+    <script src="./lib/tfjs-backend-wasm.js"></script>
 
     <style type="text/css">
       html,
@@ -54,6 +54,10 @@
   </head>
   <body>
     <div class="wrapper">
+      <div id="browser" style="display: none;">
+        This demo relies on modern browser features (JS imports, async, const,
+        etc ...) please use a more modern browser!
+      </div>
       <div class="video">
         <canvas id="videoTargetCanvas" style="display: none;"></canvas>
         <canvas id="tempCanvas" style="display: none;"></canvas>
@@ -66,6 +70,10 @@
 
     <script type="module">
       import "./src/index.js";
+    </script>
+
+    <script nomodule type="text/javascript">
+      document.getElementById("browser").style.display = "block";
     </script>
   </body>
 </html>
