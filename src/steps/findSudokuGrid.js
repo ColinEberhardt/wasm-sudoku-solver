@@ -1,5 +1,7 @@
 import { indexOfMaxValue } from "./utils.js";
 
+const EPSILON = 10;
+
 const arrayRotate = (arr, count) => {
   count -= arr.length * Math.floor(count / arr.length);
   arr.push.apply(arr, arr.splice(0, count));
@@ -7,7 +9,7 @@ const arrayRotate = (arr, count) => {
 };
 
 // takes an array of coordinates and rotate them to that the
-// top-right corner comes fristy
+// top-right corner comes first
 const rotateTopRightFirst = coords => {
   // find the top left coord index.
   const pairs = [];
@@ -40,8 +42,6 @@ const findSudokuGrid = src => {
     cv.CHAIN_APPROX_SIMPLE
   );
 
-  const imgArea = src.size().width * src.size().height;
-
   const color = index =>
     new cv.Scalar(
       (Math.sin(index) + 1.5) * 100,
@@ -52,15 +52,15 @@ const findSudokuGrid = src => {
   // approximates each contour to polygon
   const rectangles = [];
   for (let i = 0; i < contours.size(); ++i) {
-    let contour = contours.get(i);
-    let approximatedContour = new cv.Mat();
-    cv.approxPolyDP(contour, approximatedContour, 10, true);
+    const contour = contours.get(i);
+    const approximatedContour = new cv.Mat();
+    cv.approxPolyDP(contour, approximatedContour, EPSILON, true);
 
     // is it a rectangle contour?
     if (approximatedContour.size().height === 4) {
       rectangles.push({
         coord: Array.from(approximatedContour.data32S),
-        area: cv.contourArea(approximatedContour) / imgArea
+        area: cv.contourArea(approximatedContour)
       });
     }
 
@@ -75,7 +75,6 @@ const findSudokuGrid = src => {
       0
     );
 
-    contour.delete();
     approximatedContour.delete();
   }
 

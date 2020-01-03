@@ -13,7 +13,7 @@ const imgWrite = (src, dstCanvas) => {
     tmp.cols,
     tmp.rows
   );
-  var ctx = dstCanvas.getContext("2d");
+  const ctx = dstCanvas.getContext("2d");
   dstCanvas.width = tmp.cols;
   dstCanvas.height = tmp.rows;
   ctx.putImageData(imgData, 0, 0);
@@ -21,8 +21,8 @@ const imgWrite = (src, dstCanvas) => {
 };
 
 const imgRead = (canvas)=> {
-  var ctx = canvas.getContext("2d");
-  var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const ctx = canvas.getContext("2d");
+  const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   return cv.matFromImageData(imgData)
 }
 

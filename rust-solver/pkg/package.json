@@ -1,0 +1,15 @@
+{
+  "name": "sudoku-wasm",
+  "collaborators": [
+    "Colin E. <colin.eberhardt@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "sudoku_wasm_bg.wasm",
+    "sudoku_wasm.js",
+    "sudoku_wasm.d.ts"
+  ],
+  "module": "sudoku_wasm.js",
+  "types": "sudoku_wasm.d.ts",
+  "sideEffects": "false"
+}
